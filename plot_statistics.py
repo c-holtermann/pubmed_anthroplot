@@ -61,15 +61,18 @@ for plot_data in plot_datas:
     ax = ax_base.twinx()
 
   print n_plot,":",plot_data.x,plot_data.y
-  pltmp, = ax.plot(plot_data.x,plot_data.y, styles[n_plot])
 
   label = ""
-  if "Label" in plot_data.keys:
-    label += plot_data.keys["Label"]
-  if "Suchterm" in plot_data.keys:
-    label += plot_data.keys["Suchterm"]
+  #if "Label" in plot_data.keys:
+  #  label += plot_data.keys["Label"].decode("utf8")
+  #if "Suchterm" in plot_data.keys:
+  #  label += plot_data.keys["Suchterm"].decode("utf8")
 
-  label_list.append(label.decode("utf8"))
+  label = ax_ylabels[n_plot]
+  pltmp, = ax.plot(plot_data.x, plot_data.y, styles[n_plot], label=label)
+
+  label_list.append(label)
+
   legpl.append(pltmp)
 
   min_x_this = min(plot_data.x)
@@ -86,7 +89,7 @@ for plot_data in plot_datas:
     ax.patch.set_visible(False)
 
   ax.set_ylabel(ax_ylabels[n_plot])
-
+  # legend = ax.legend(loc="upper center")
   n_plot += 1
 
 #fig_legend = ax.legend(legpl,label_list,loc=2, bbox_to_anchor=(.05,-0.1), borderaxespad=0.)
@@ -98,6 +101,8 @@ ax_base.set_xlabel("Jahr")
 
 ax.yaxis.set_major_locator(MaxNLocator(prune='lower'))
 ax_base.yaxis.set_major_locator(MaxNLocator(prune='lower'))
+
+ax.legend(legpl, label_list, loc="upper center")
 
 plt.tight_layout()
 plt.xlim([min_x,max_x])
