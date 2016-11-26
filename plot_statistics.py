@@ -1,6 +1,9 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 import csv
 from pylab import *
 import glob
+import datetime
 import os
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
@@ -15,18 +18,40 @@ class Plot_data:
 
 plot_datas = []
 
-files=glob.glob("statistics_*.csv")
+datadir = "./data"
+imgdir = "./img"
 
-#files=["statistics_1.csv","statistics_2.csv"]
+timenow = datetime.datetime.now()
+timenow_date_str = str(timenow.year) + "-" + \
+                str(timenow.month) + "-" + \
+                str(timenow.day)
 
-for files in files:
-    print files
+_glob = timenow_date_str + "_statistics_*.csv"
+glob_full = os.path.join(datadir, _glob)
 
-    with open(files, 'rb') as csvfile:
+files = glob.glob(glob_full)
+
+# sort files by number
+# number is assumed to be at position 22
+# where number n is "YY-MM-DD_statistics_n.csv"
+
+files = sorted(files, key=lambda name: os.path.basename(name)[22])
+
+print "plotting files", files
+
+outfile_img_name = timenow_date_str + "_fig"
+outfile_img_name_full = os.path.join(imgdir, outfile_img_name)
+
+# files=["statistics_1.csv","statistics_2.csv"]
+
+for file_ in files:
+    print file_
+
+    with open(file_, 'rb') as csvfile:
       statistics_reader = csv.reader(csvfile, delimiter=',', quotechar="'")
 
       plot_data = Plot_data()
-      plot_data.filename = files
+      plot_data.filename = file_
 
       for row in statistics_reader:
         if row[0] == "Wert":
@@ -106,7 +131,7 @@ ax.legend(legpl, label_list, loc="upper center")
 
 plt.tight_layout()
 plt.xlim([min_x,max_x])
-fig.savefig('samplefigure', #bbox_extra_artists=(fig_legend,),
+fig.savefig(outfile_img_name_full, #bbox_extra_artists=(fig_legend,),
             bbox_inches='tight', pad_inches=0.2)
 
 # plt.draw()
