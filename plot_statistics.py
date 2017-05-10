@@ -119,7 +119,7 @@ for plot_data in plot_datas:
 
 #fig_legend = ax.legend(legpl,label_list,loc=2, bbox_to_anchor=(.05,-0.1), borderaxespad=0.)
 
-ax_base.set_title("Summe auf Pubmed gelisterer Publikationen")
+ax_base.set_title("Summe auf Pubmed gelisteter Publikationen")
 ax_base.set_xlabel("Jahr")
 #ax_base.set_ylabel("Summe Publikationen Ant. Med.")
 #ax.set_ylabel("Summe Publikationen Pubmed")

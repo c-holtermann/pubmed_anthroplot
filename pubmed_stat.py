@@ -8,7 +8,7 @@ from pyparsing import *
 # Word, alphas, makeHTMLTags
 
 year_start = 1940
-year_stop  = 2016
+year_stop  = 2017
 datadir = "./data"
 
 rebuild = [ 1, 2, 3]
