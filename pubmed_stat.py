@@ -9,7 +9,7 @@ from pyparsing import *
 
 year_start = 1940
 year_stop  = 2017
-datadir = "./data"
+datadir = "../data"
 
 rebuild = [ 1, 2, 3]
 

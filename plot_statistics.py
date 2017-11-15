@@ -18,8 +18,8 @@ class Plot_data:
 
 plot_datas = []
 
-datadir = "./data"
-imgdir = "./img"
+datadir = "../data"
+imgdir = "../img"
 
 timenow = datetime.datetime.now()
 timenow_date_str = str(timenow.year) + "-" + \
