@@ -1,7 +1,7 @@
 pubmed_anthroplot
 =================
 
-Python skript to create a plot of publications on pubmed in relation to anthroposophic medicine
+Python skript to create a plot of publications on pubmed a) in relation to anthroposophic medicine and b) in relation to publications about meditation 
 
 * pubmed_stat.py fetches data from pubmed and writes csv outfiles
 * plot_statistics.py creates graphs from previously written csv
