@@ -31,11 +31,10 @@ glob_full = os.path.join(datadir, _glob)
 
 files = glob.glob(glob_full)
 
-# sort files by number
-# number is assumed to be at position 22
-# where number n is "YY-MM-DD_statistics_n.csv"
+# sort files (by number)
+# where number n is "YYYY-(M)M-DD_statistics_n.csv"
 
-files = sorted(files, key=lambda name: os.path.basename(name)[22])
+files = sorted(files, key=lambda name: os.path.basename(name))
 
 print "plotting files", files
 
