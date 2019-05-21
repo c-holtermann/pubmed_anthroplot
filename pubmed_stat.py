@@ -93,7 +93,7 @@ for config in configs:
 
             html_doc = response.read()
 
-            soup = BeautifulSoup(html_doc)
+            soup = BeautifulSoup(html_doc, "lxml")
             #print(soup.prettify())
 
             #print soup.find(id="term")
