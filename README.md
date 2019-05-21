@@ -9,4 +9,4 @@ Python skript to create a plot of publications on pubmed a) in relation to anthr
 First run pubmed_stat.py. It will create data files in the datadir (default: ../data).
 After that run plot_statistics.py. It will create an image file in the imagedir (default: ../img).
 
-![example plot](2017-11-15_fig.png)
+![example plot](2019-5-18_fig.png)
