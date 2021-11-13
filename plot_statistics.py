@@ -77,61 +77,66 @@ ax_ylabels = ["Publikationen Ant. Med.", "Publikationen Pubmed gesamt", "Publika
 styles = [ "","g--","r." ]
 legpl = []
 label_list = []
-for plot_data in plot_datas:
-  if n_plot == 0:
-    ax_base = fig.add_subplot(111)
-    ax = ax_base
-  else:
-    ax = ax_base.twinx()
 
-  print(n_plot,":",plot_data.x,plot_data.y)
+def main():
+    for plot_data in plot_datas:
+      if n_plot == 0:
+        ax_base = fig.add_subplot(111)
+        ax = ax_base
+      else:
+        ax = ax_base.twinx()
 
-  label = ""
-  #if "Label" in plot_data.keys:
-  #  label += plot_data.keys["Label"].decode("utf8")
-  #if "Suchterm" in plot_data.keys:
-  #  label += plot_data.keys["Suchterm"].decode("utf8")
+      print(n_plot,":",plot_data.x,plot_data.y)
 
-  label = ax_ylabels[n_plot]
-  pltmp, = ax.plot(plot_data.x, plot_data.y, styles[n_plot], label=label)
+      label = ""
+      #if "Label" in plot_data.keys:
+      #  label += plot_data.keys["Label"].decode("utf8")
+      #if "Suchterm" in plot_data.keys:
+      #  label += plot_data.keys["Suchterm"].decode("utf8")
 
-  label_list.append(label)
+      label = ax_ylabels[n_plot]
+      pltmp, = ax.plot(plot_data.x, plot_data.y, styles[n_plot], label=label)
 
-  legpl.append(pltmp)
+      label_list.append(label)
 
-  min_x_this = min(plot_data.x)
-  max_x_this = max(plot_data.x)
+      legpl.append(pltmp)
 
-  if min_x_this < min_x:
-    min_x = min_x_this
-  if max_x_this > max_x:
-    max_x = max_x_this
+      min_x_this = min(plot_data.x)
+      max_x_this = max(plot_data.x)
 
-  if n_plot > 1:
-    ax.spines['right'].set_position(('axes', 1.1))
-    ax.set_frame_on(True)
-    ax.patch.set_visible(False)
+      if min_x_this < min_x:
+        min_x = min_x_this
+      if max_x_this > max_x:
+        max_x = max_x_this
 
-  ax.set_ylabel(ax_ylabels[n_plot])
-  # legend = ax.legend(loc="upper center")
-  n_plot += 1
+      if n_plot > 1:
+        ax.spines['right'].set_position(('axes', 1.1))
+        ax.set_frame_on(True)
+        ax.patch.set_visible(False)
 
-#fig_legend = ax.legend(legpl,label_list,loc=2, bbox_to_anchor=(.05,-0.1), borderaxespad=0.)
+      ax.set_ylabel(ax_ylabels[n_plot])
+      # legend = ax.legend(loc="upper center")
+      n_plot += 1
 
-ax_base.set_title("Summe auf Pubmed gelisteter Publikationen")
-ax_base.set_xlabel("Jahr")
-#ax_base.set_ylabel("Summe Publikationen Ant. Med.")
-#ax.set_ylabel("Summe Publikationen Pubmed")
+    #fig_legend = ax.legend(legpl,label_list,loc=2, bbox_to_anchor=(.05,-0.1), borderaxespad=0.)
 
-ax.yaxis.set_major_locator(MaxNLocator(prune='lower'))
-ax_base.yaxis.set_major_locator(MaxNLocator(prune='lower'))
+    ax_base.set_title("Summe auf Pubmed gelisteter Publikationen")
+    ax_base.set_xlabel("Jahr")
+    #ax_base.set_ylabel("Summe Publikationen Ant. Med.")
+    #ax.set_ylabel("Summe Publikationen Pubmed")
 
-ax.legend(legpl, label_list, loc="upper center")
+    ax.yaxis.set_major_locator(MaxNLocator(prune='lower'))
+    ax_base.yaxis.set_major_locator(MaxNLocator(prune='lower'))
 
-plt.tight_layout()
-plt.xlim([min_x,max_x])
-fig.savefig(outfile_img_name_full, #bbox_extra_artists=(fig_legend,),
-            bbox_inches='tight', pad_inches=0.2)
+    ax.legend(legpl, label_list, loc="upper center")
 
-# plt.draw()
-# plt.show()
+    plt.tight_layout()
+    plt.xlim([min_x,max_x])
+    fig.savefig(outfile_img_name_full, #bbox_extra_artists=(fig_legend,),
+                bbox_inches='tight', pad_inches=0.2)
+
+    # plt.draw()
+    # plt.show()
+
+if __name__ == "__main__":
+    main()
