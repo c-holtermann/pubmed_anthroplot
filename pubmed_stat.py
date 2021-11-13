@@ -52,6 +52,48 @@ configs = [{'nr': 1,
 
 locale.setlocale( locale.LC_ALL, 'en_US.UTF-8' )
 
+def readCommandLine():
+    # Create the parser
+    parser = argparse.ArgumentParser()
+
+    # Add argument startdate
+    parser.add_argument('--startdate', type=int, default=None)
+
+    # Add argument enddate
+    parser.add_argument('--enddate', type=int, default=None)
+
+    # Add argument configfile
+    parser.add_argument('--configfile', type=argparse.FileType('r'), default=configFileName)
+
+    # Add argument verbose
+    parser.add_argument('--verbose', type=bool)
+
+    # Parse the argument
+    args = parser.parse_args()
+
+    return args
+
+def readConfigFile(args):
+    configFile = args.configfile
+    data = json.load(configFile)
+
+    if not args.startdate:
+        if data["year_start"]:
+            args.startdate = data["year_start"]
+        else:
+            args.startdate = year_start
+
+    if not args.enddate:
+        if data["year_end"]:
+            if data["year_end"] == "today":
+                args.enddate = datetime.datetime.now().year
+            else:
+                args.enddate = data["year_end"]
+        else:
+            args.enddate = year_stop
+
+    return data
+
 def main():
     for config in configs:
 
