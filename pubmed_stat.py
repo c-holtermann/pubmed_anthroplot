@@ -101,7 +101,18 @@ for config in configs:
 
             #print soup.find(id="term")
 
-            res_count = soup.find_all(attrs={"name": "ncbi_resultcount"})[0]["content"]
+            # works if there is more than 1 result
+            res_container = soup.find_all(attrs={"class": "results-amount-container"})
+            if res_container:
+                res_inner_container = res_container[0].findAll('span', attrs={"class": "value"})
+                if res_inner_container:
+                    res_count = locale.atoi(res_inner_container[0].get_text())
+            else:
+                res_container = soup.find_all(attrs={"class": "article-page"})
+                if res_container:
+                    res_count = 1
+                else:
+                    res_count = 0
 
             print(date_end,":",res_count)
 
