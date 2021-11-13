@@ -3,6 +3,7 @@
 import datetime
 import urllib.request, urllib.error, urllib.parse
 import os
+import locale
 from bs4 import BeautifulSoup
 from pyparsing import *
 # Word, alphas, makeHTMLTags
@@ -45,7 +46,6 @@ configs = [{'nr': 1,
             'search_term': '',
             'label': "Gesamtpublikationen Pubmed"}]
 
-import locale
 locale.setlocale( locale.LC_ALL, 'en_US.UTF-8' )
 
 for config in configs:
