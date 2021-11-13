@@ -46,7 +46,7 @@ outfile_img_name_full = os.path.join(imgdir, outfile_img_name)
 for file_ in files:
     print(file_)
 
-    with open(file_, 'rb') as csvfile:
+    with open(file_, 'r') as csvfile:
       statistics_reader = csv.reader(csvfile, delimiter=',', quotechar="'")
 
       plot_data = Plot_data()
