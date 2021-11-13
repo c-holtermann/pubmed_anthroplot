@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 import csv
 from pylab import *
@@ -36,7 +36,7 @@ files = glob.glob(glob_full)
 
 files = sorted(files, key=lambda name: os.path.basename(name))
 
-print "plotting files", files
+print("plotting files", files)
 
 outfile_img_name = timenow_date_str + "_fig"
 outfile_img_name_full = os.path.join(imgdir, outfile_img_name)
@@ -44,7 +44,7 @@ outfile_img_name_full = os.path.join(imgdir, outfile_img_name)
 # files=["statistics_1.csv","statistics_2.csv"]
 
 for file_ in files:
-    print file_
+    print(file_)
 
     with open(file_, 'rb') as csvfile:
       statistics_reader = csv.reader(csvfile, delimiter=',', quotechar="'")
@@ -58,7 +58,7 @@ for file_ in files:
           plot_data.y.append(int(row[2]))
         else:
           plot_data.keys[row[0]] = row[1]
-        print ', '.join(row)
+        print(', '.join(row))
 
     plot_datas.append(plot_data)
 
@@ -84,7 +84,7 @@ for plot_data in plot_datas:
   else:
     ax = ax_base.twinx()
 
-  print n_plot,":",plot_data.x,plot_data.y
+  print(n_plot,":",plot_data.x,plot_data.y)
 
   label = ""
   #if "Label" in plot_data.keys:

@@ -1,7 +1,7 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 import datetime
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import os
 from bs4 import BeautifulSoup
 from pyparsing import *
@@ -70,10 +70,10 @@ for config in configs:
         outfile.write("Datum" + "," + datum_str + chr(10))
         outfile.write("Label" + "," + label + chr(10))
 
-        print "Nr", config['nr']
-        print "Label", label
-        print "Suchterm", search_term
-        print "Filename", outfilename_full
+        print("Nr", config['nr'])
+        print("Label", label)
+        print("Suchterm", search_term)
+        print("Filename", outfilename_full)
 
         for date_end in range(year_start, year_stop):
 
@@ -86,10 +86,10 @@ for config in configs:
             url_pubmed = base_url + search_term_url
 
             # print url_pubmed
-            url_pubmed = urllib2.quote(url_pubmed, safe="%/:=&?~#+!$,;'@()*[]")
+            url_pubmed = urllib.parse.quote(url_pubmed, safe="%/:=&?~#+!$,;'@()*[]")
             # print url_pubmed
 
-            response = urllib2.urlopen(url_pubmed)
+            response = urllib.request.urlopen(url_pubmed)
 
             html_doc = response.read()
 
@@ -100,6 +100,6 @@ for config in configs:
 
             res_count = soup.find_all(attrs={"name": "ncbi_resultcount"})[0]["content"]
 
-            print date_end,":",res_count
+            print(date_end,":",res_count)
 
             outfile.write ("Wert"+","+str(date_end)+","+str(res_count)+chr(10))
