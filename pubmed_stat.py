@@ -48,72 +48,76 @@ configs = [{'nr': 1,
 
 locale.setlocale( locale.LC_ALL, 'en_US.UTF-8' )
 
-for config in configs:
+def main():
+    for config in configs:
 
-    nr = config['nr']
-    # only rebuild the configs in array rebuild
-    if not nr in rebuild:
-        continue
+        nr = config['nr']
+        # only rebuild the configs in array rebuild
+        if not nr in rebuild:
+            continue
 
-    timenow = datetime.datetime.now()
-    timenow_date_str = str(timenow.year) + "-" + \
-                    str(timenow.month) + "-" + \
-                    str(timenow.day)
+        timenow = datetime.datetime.now()
+        timenow_date_str = str(timenow.year) + "-" + \
+                        str(timenow.month) + "-" + \
+                        str(timenow.day)
 
-    outfilename = timenow_date_str+"_statistics_" + str(nr)  + ".csv"
-    outfilename_full = os.path.join(datadir, outfilename);
+        outfilename = timenow_date_str+"_statistics_" + str(nr)  + ".csv"
+        outfilename_full = os.path.join(datadir, outfilename);
 
-    with open(outfilename_full, 'w') as outfile:
-        search_term = config['search_term']
-        label = config['label']
+        with open(outfilename_full, 'w') as outfile:
+            search_term = config['search_term']
+            label = config['label']
 
-        datum = datetime.datetime.now()
-        datum_str = datum.strftime("%d. %B %Y")
-        outfile.write("Suchterm" + "," + search_term + chr(10))
-        outfile.write("Datum" + "," + datum_str + chr(10))
-        outfile.write("Label" + "," + label + chr(10))
+            datum = datetime.datetime.now()
+            datum_str = datum.strftime("%d. %B %Y")
+            outfile.write("Suchterm" + "," + search_term + chr(10))
+            outfile.write("Datum" + "," + datum_str + chr(10))
+            outfile.write("Label" + "," + label + chr(10))
 
-        print("Nr", config['nr'])
-        print("Label", label)
-        print("Suchterm", search_term)
-        print("Filename", outfilename_full)
+            print("Nr", config['nr'])
+            print("Label", label)
+            print("Suchterm", search_term)
+            print("Filename", outfilename_full)
 
-        for date_end in range(year_start, year_stop):
+            for date_end in range(year_start, year_stop):
 
-            search_term_time_interval='("0000/01/01"[Date - Publication] : "'+str(date_end)+'"[Date - Publication])'
-            search_term_url='?term='+search_term+" AND "+search_term_time_interval
+                search_term_time_interval='("0000/01/01"[Date - Publication] : "'+str(date_end)+'"[Date - Publication])'
+                search_term_url='?term='+search_term+" AND "+search_term_time_interval
 
-            base_url="http://www.ncbi.nlm.nih.gov/pubmed/"
-            # search_term="?term=anthroposoph*++AND+%28+medicin*+OR+medizin*+%29"
+                base_url="http://www.ncbi.nlm.nih.gov/pubmed/"
+                # search_term="?term=anthroposoph*++AND+%28+medicin*+OR+medizin*+%29"
 
-            url_pubmed = base_url + search_term_url
+                url_pubmed = base_url + search_term_url
 
-            # print url_pubmed
-            url_pubmed = urllib.parse.quote(url_pubmed, safe="%/:=&?~#+!$,;'@()*[]")
-            # print url_pubmed
+                # print url_pubmed
+                url_pubmed = urllib.parse.quote(url_pubmed, safe="%/:=&?~#+!$,;'@()*[]")
+                # print url_pubmed
 
-            response = urllib.request.urlopen(url_pubmed)
+                response = urllib.request.urlopen(url_pubmed)
 
-            html_doc = response.read()
+                html_doc = response.read()
 
-            soup = BeautifulSoup(html_doc, "lxml")
-            #print(soup.prettify())
+                soup = BeautifulSoup(html_doc, "lxml")
+                #print(soup.prettify())
 
-            #print soup.find(id="term")
+                #print soup.find(id="term")
 
-            # works if there is more than 1 result
-            res_container = soup.find_all(attrs={"class": "results-amount-container"})
-            if res_container:
-                res_inner_container = res_container[0].findAll('span', attrs={"class": "value"})
-                if res_inner_container:
-                    res_count = locale.atoi(res_inner_container[0].get_text())
-            else:
-                res_container = soup.find_all(attrs={"class": "article-page"})
+                # works if there is more than 1 result
+                res_container = soup.find_all(attrs={"class": "results-amount-container"})
                 if res_container:
-                    res_count = 1
+                    res_inner_container = res_container[0].findAll('span', attrs={"class": "value"})
+                    if res_inner_container:
+                        res_count = locale.atoi(res_inner_container[0].get_text())
                 else:
-                    res_count = 0
+                    res_container = soup.find_all(attrs={"class": "article-page"})
+                    if res_container:
+                        res_count = 1
+                    else:
+                        res_count = 0
 
-            print(date_end,":",res_count)
+                print(date_end,":",res_count)
 
-            outfile.write ("Wert"+","+str(date_end)+","+str(res_count)+chr(10))
+                outfile.write ("Wert"+","+str(date_end)+","+str(res_count)+chr(10))
+
+if __name__ == "__main__":
+    main()
