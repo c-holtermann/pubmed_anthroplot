@@ -95,9 +95,18 @@ def readConfigFile(args):
     return data
 
 def main():
-    for config in configs:
+    global args, config, configData
 
-        nr = config['nr']
+    args = readCommandLine()
+    configData = readConfigFile(args)
+
+    for fig in configData["figures"]:
+        #for config in configs:
+
+        #nr = config['nr']
+        nr = int(fig)
+        fig = configData["figures"][fig]
+
         # only rebuild the configs in array rebuild
         if not nr in rebuild:
             continue
@@ -111,8 +120,8 @@ def main():
         outfilename_full = os.path.join(datadir, outfilename);
 
         with open(outfilename_full, 'w') as outfile:
-            search_term = config['search_term']
-            label = config['label']
+            search_term = ''.join(fig['search_term'])
+            label = fig['label']
 
             datum = datetime.datetime.now()
             datum_str = datum.strftime("%d. %B %Y")
@@ -120,12 +129,12 @@ def main():
             outfile.write("Datum" + "," + datum_str + chr(10))
             outfile.write("Label" + "," + label + chr(10))
 
-            print("Nr", config['nr'])
+            print("Nr", nr)
             print("Label", label)
             print("Suchterm", search_term)
             print("Filename", outfilename_full)
 
-            for date_end in range(year_start, year_stop):
+            for date_end in range(args.startdate, args.enddate):
 
                 search_term_time_interval='("0000/01/01"[Date - Publication] : "'+str(date_end)+'"[Date - Publication])'
                 search_term_url='?term='+search_term+" AND "+search_term_time_interval
