@@ -6,6 +6,7 @@ import os
 import json
 import argparse
 import locale
+import backoff
 from bs4 import BeautifulSoup
 from pyparsing import *
 # Word, alphas, makeHTMLTags
@@ -62,6 +63,12 @@ def readConfigFile(args):
 
     return data
 
+@backoff.on_exception(backoff.expo,
+                      urllib.error.URLError,
+                      max_value=120)
+def url_open(url):
+    return urllib.request.urlopen(url)
+
 def main():
     global args, config, configData
 
@@ -116,7 +123,7 @@ def main():
                 url_pubmed = urllib.parse.quote(url_pubmed, safe="%/:=&?~#+!$,;'@()*[]")
                 # print url_pubmed
 
-                response = urllib.request.urlopen(url_pubmed)
+                response = url_open(url_pubmed)
 
                 html_doc = response.read()
 
