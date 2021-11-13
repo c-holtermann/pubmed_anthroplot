@@ -80,7 +80,7 @@ for config in configs:
 
         for date_end in range(year_start, year_stop):
 
-            search_term_time_interval='("-2000"[Date - Publication] : "'+str(date_end)+'"[Date - Publication])'
+            search_term_time_interval='("0000/01/01"[Date - Publication] : "'+str(date_end)+'"[Date - Publication])'
             search_term_url='?term='+search_term+" AND "+search_term_time_interval
 
             base_url="http://www.ncbi.nlm.nih.gov/pubmed/"
