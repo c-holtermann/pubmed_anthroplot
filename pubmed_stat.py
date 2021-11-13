@@ -13,6 +13,8 @@ from pyparsing import *
 year_start = 1940
 year_stop  = datetime.datetime.now().year
 datadir = "../data"
+configFileName = "./pubmed_anthroplot.json"
+verbose = False
 
 rebuild = [ 1, 2, 3]
 
