@@ -45,6 +45,9 @@ configs = [{'nr': 1,
             'search_term': '',
             'label': "Gesamtpublikationen Pubmed"}]
 
+import locale
+locale.setlocale( locale.LC_ALL, 'en_US.UTF-8' )
+
 for config in configs:
 
     nr = config['nr']
