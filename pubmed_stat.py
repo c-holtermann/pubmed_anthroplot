@@ -18,38 +18,6 @@ verbose = False
 
 rebuild = [ 1, 2, 3]
 
-configs = [{'nr': 1,
-            'search_term': (
-            '(anthropos* OR weleda OR wala OR (curativ* AND eurythm*) OR '
-            '(rhythmic* AND massage) OR (rhythmic AND massage)'
-            'OR (pressel AND massage) OR eurythm* OR infludo OR nausyn '
-            'OR cardiodoron OR combudoron OR hepatozoon OR choleodoron '
-            'OR digestodoron OR dermatodoron OR pneumodoron OR '
-            'pneumadoron OR erysidoron OR kephalodoron OR cephalodoron '
-            'OR biodoron OR (ferrum AND quar*) OR menodoron '
-            'OR pertudoron OR echinadoron OR biodor OR onopordon '
-            'OR bidor OR venadoron OR (plantago AND bronchial*) OR '
-            '(bolus AND eucalypt* AND comp*) OR chirophoneti* OR '
-            '(bothmer* AND gymnasti*) OR (mistletoe OR mistletoe*) OR '
-            '(viscum OR viscum*) OR (iscador OR iscador*) OR '
-            '(iscar OR iscar*) OR (helixor OR helixor*) OR '
-            '(iscucin OR iscucin*) OR '
-            '(isorel OR isorel* OR visorel OR visorel*) OR abnoba* OR '
-            '(waldorf OR waldorf*) OR (rudolf AND steiner)) AND '
-            '((study* OR studie*) OR (trial OR trial*) OR evaluat* OR '
-            'random* OR investig* OR (cohort* OR kohort*) OR outcome* OR '
-            '(review OR review*) OR (ubersicht OR übersicht OR uebersicht) '
-            'OR (überblick OR ueberblick OR uberblick) OR metaanalys* OR '
-            'meta-analys* OR (meta AND analys*))'),
-            'label': "'Ant. Med., Suchterm:'"
-            },
-           {'nr': 3,
-            'search_term': "Suchterm: meditati* or contempl*",
-            'label': "Meditation"},
-           {'nr': 2,
-            'search_term': '',
-            'label': "Gesamtpublikationen Pubmed"}]
-
 locale.setlocale( locale.LC_ALL, 'en_US.UTF-8' )
 
 def readCommandLine():
