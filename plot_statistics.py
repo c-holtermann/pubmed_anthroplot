@@ -16,8 +16,6 @@ class Plot_data:
     self.title = ""
     self.keys = {}
 
-plot_datas = []
-
 datadir = "../data"
 imgdir = "../img"
 
@@ -26,59 +24,68 @@ timenow_date_str = str(timenow.year) + "-" + \
                 str(timenow.month) + "-" + \
                 str(timenow.day)
 
-_glob = timenow_date_str + "_statistics_*.csv"
-glob_full = os.path.join(datadir, _glob)
+def get_infiles():
 
-files = glob.glob(glob_full)
+    _glob = timenow_date_str + "_statistics_*.csv"
+    glob_full = os.path.join(datadir, _glob)
 
-# sort files (by number)
-# where number n is "YYYY-(M)M-DD_statistics_n.csv"
+    files = glob.glob(glob_full)
 
-files = sorted(files, key=lambda name: os.path.basename(name))
+    # sort files (by number)
+    # where number n is "YYYY-(M)M-DD_statistics_n.csv"
 
-print("plotting files", files)
+    files = sorted(files, key=lambda name: os.path.basename(name))
 
-outfile_img_name = timenow_date_str + "_fig"
-outfile_img_name_full = os.path.join(imgdir, outfile_img_name)
+    return files
 
-# files=["statistics_1.csv","statistics_2.csv"]
+def read_infiles(files):
 
-for file_ in files:
-    print(file_)
+    plot_datas = []
+    
+    for file_ in files:
+        print(file_)
 
-    with open(file_, 'r') as csvfile:
-      statistics_reader = csv.reader(csvfile, delimiter=',', quotechar="'")
+        with open(file_, 'r') as csvfile:
+          statistics_reader = csv.reader(csvfile, delimiter=',', quotechar="'")
 
-      plot_data = Plot_data()
-      plot_data.filename = file_
+          plot_data = Plot_data()
+          plot_data.filename = file_
 
-      for row in statistics_reader:
-        if row[0] == "Wert":
-          plot_data.x.append(int(row[1]))
-          plot_data.y.append(int(row[2]))
-        else:
-          plot_data.keys[row[0]] = row[1]
-        print(', '.join(row))
+          for row in statistics_reader:
+            if row[0] == "Wert":
+              plot_data.x.append(int(row[1]))
+              plot_data.y.append(int(row[2]))
+            else:
+              plot_data.keys[row[0]] = row[1]
+            print(', '.join(row))
 
-    plot_datas.append(plot_data)
+        plot_datas.append(plot_data)
 
-
-fig = plt.figure()
-
-#title("Suchterm: "+plot_datas[0].keys["Suchterm"])
-#xlabel("Jahr")
-#ylabel("Anzahl Publikationen")
-
-n_plot = 0
-min_x = 10000
-max_x = 0
-ax_ylabels = ["Publikationen Ant. Med.", "Publikationen Pubmed gesamt", "Publikationen Meditation"]
-
-styles = [ "","g--","r." ]
-legpl = []
-label_list = []
+    return plot_datas
 
 def main():
+    files = get_infiles()
+
+    print("plotting files", files)
+
+    outfile_img_name = timenow_date_str + "_fig"
+    outfile_img_name_full = os.path.join(imgdir, outfile_img_name)
+
+    # files=["statistics_1.csv","statistics_2.csv"]
+
+    plot_datas = read_infiles(files)
+
+    fig = plt.figure()
+
+    n_plot = 0
+    min_x = 10000
+    max_x = 0
+    ax_ylabels = ["Publikationen Ant. Med.", "Publikationen Pubmed gesamt", "Publikationen Meditation"]
+
+    styles = [ "","g--","r." ]
+    legpl = []
+    label_list = []
+
     for plot_data in plot_datas:
       if n_plot == 0:
         ax_base = fig.add_subplot(111)
@@ -135,8 +142,8 @@ def main():
     fig.savefig(outfile_img_name_full, #bbox_extra_artists=(fig_legend,),
                 bbox_inches='tight', pad_inches=0.2)
 
-    # plt.draw()
-    # plt.show()
+    plt.draw()
+    plt.show()
 
 if __name__ == "__main__":
     main()
