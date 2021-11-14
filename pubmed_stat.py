@@ -64,9 +64,16 @@ def readConfigFile(args):
 
     return data
 
+def backoff_hdlr(details):
+    print ("Backing off {wait:0.1f} seconds after {tries} tries ".format(**details))
+
+@backoff.on_exception(backoff.expo,
+                      TimeoutError,
+                      max_tries=5)
 @backoff.on_exception(backoff.expo,
                       urllib.error.URLError,
-                      max_value=120)
+                      max_tries=5,
+                      on_backoff=backoff_hdlr)
 def url_open(url):
     return urllib.request.urlopen(url)
 
