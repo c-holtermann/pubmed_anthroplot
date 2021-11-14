@@ -7,6 +7,7 @@ import json
 import argparse
 import locale
 import backoff
+import tqdm
 from bs4 import BeautifulSoup
 from pyparsing import *
 # Word, alphas, makeHTMLTags
@@ -75,7 +76,8 @@ def main():
     args = readCommandLine()
     configData = readConfigFile(args)
 
-    for fig in configData["figures"]:
+    with tqdm.tqdm(configData["figures"]) as t_outer:
+      for fig in t_outer:
         #for config in configs:
 
         #nr = config['nr']
@@ -104,12 +106,15 @@ def main():
             outfile.write("Datum" + "," + datum_str + chr(10))
             outfile.write("Label" + "," + label + chr(10))
 
-            print("Nr", nr)
-            print("Label", label)
-            print("Suchterm", search_term)
-            print("Filename", outfilename_full)
+            tqdm.tqdm.write(f"Nr {nr}")
+            tqdm.tqdm.write(f"Label {label}")
+            tqdm.tqdm.write(f"Suchterm {search_term}")
+            tqdm.tqdm.write(f"Filename {outfilename_full}")
 
-            for date_end in range(args.startdate, args.enddate):
+            text = ""
+            with tqdm.tqdm(range(args.startdate, args.enddate)) as t:
+
+              for date_end in t:
 
                 search_term_time_interval='("0000/01/01"[Date - Publication] : "'+str(date_end)+'"[Date - Publication])'
                 search_term_url='?term='+search_term+" AND "+search_term_time_interval
@@ -145,7 +150,9 @@ def main():
                     else:
                         res_count = 0
 
-                print(date_end,":",res_count)
+                text = f"{date_end}:{res_count}"
+                t.set_description(f'{text}')
+                # print(text)
 
                 outfile.write ("Wert"+","+str(date_end)+","+str(res_count)+chr(10))
 
