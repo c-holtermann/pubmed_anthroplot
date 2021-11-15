@@ -20,3 +20,7 @@ Both scripts need a config file. Default ist ```pubmed_anthroplot.json```. This 
 2 plots
 =======
 ![example plot](2021-11-15_fig_2_en.png)
+
+Credits
+=======
+Original publication "Klinische Forschung zur Anthroposophischen Medizin Update eines «Health Technology Assessment»-Berichts und Status Quo" https://docplayer.org/62953772-Klinische-forschung-zur-anthroposophischen-medizin-update-eines-health-technology-assessment-berichts-und-status-quo.html
