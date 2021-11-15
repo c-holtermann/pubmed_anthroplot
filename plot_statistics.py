@@ -21,6 +21,8 @@ class Plot_data:
 
 datadir = "../data"
 imgdir = "../img"
+configFileName = "./pubmed_anthroplot.json"
+ax_ylabels = ["Publikationen Ant. Med.", "Publikationen Pubmed gesamt", "Publikationen Meditation"]
 
 timenow = datetime.datetime.now()
 timenow_date_str = str(timenow.year) + "-" + \
