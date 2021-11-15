@@ -23,4 +23,4 @@ Both scripts need a config file. Default ist ```pubmed_anthroplot.json```. This 
 
 Credits
 =======
-Original publication "Klinische Forschung zur Anthroposophischen Medizin Update eines «Health Technology Assessment»-Berichts und Status Quo" https://docplayer.org/62953772-Klinische-forschung-zur-anthroposophischen-medizin-update-eines-health-technology-assessment-berichts-und-status-quo.html
+Original publication Kienle, Gunver; Glockmann, Anja; Grugek, Renate; Hamre, Harald Johan; Kiene, Helmut (2011), "Klinische Forschung zur Anthroposophischen Medizin – Update eines «Health Technology Assessment»-Berichts und Status Quo" [Clinical research on anthroposophic medicine - Update of a "Health Technology Assessment" report and Status Quo], Forschende Komplementärmedizin / Research in Complementary Medicine, 18, pp. 269–282, [doi:10.1159/000331812](https://www.doi.org/10.1159/000331812), ISSN 1661-4119
