@@ -10,4 +10,13 @@ First run ```pubmed_stat.py```. It will create data files in the datadir (defaul
 
 After that run ```plot_statistics.py```. It will create an image file in the imagedir (default: ```../img```).
 
-![example plot](2021-11-13_fig.png)
+Both scripts need a config file. Default ist ```pubmed_anthroplot.json```. This defines the search term and label of plot and axes.
+
+3 plots
+=======
+![example plot](2021-11-14_fig_3_en.png)
+
+
+2 plots
+=======
+![example plot](2021-11-15_fig_2_en.png)
