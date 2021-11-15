@@ -25,7 +25,7 @@ configFileName = "./pubmed_anthroplot.json"
 ax_ylabels = ["Publikationen Ant. Med.", "Publikationen Pubmed gesamt", "Publikationen Meditation"]
 
 timenow = datetime.datetime.now()
-timenow_date_str = str(timenow.year) + "-" + \
+today = timenow_date_str = str(timenow.year) + "-" + \
                 str(timenow.month) + "-" + \
                 str(timenow.day)
 
