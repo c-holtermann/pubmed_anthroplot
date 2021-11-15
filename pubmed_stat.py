@@ -12,8 +12,8 @@ from bs4 import BeautifulSoup
 from pyparsing import *
 # Word, alphas, makeHTMLTags
 
-year_start = 1940
-year_stop  = datetime.datetime.now().year
+year_start = 1940 # can be a number
+year_stop  = datetime.datetime.now().year # can be a number or string "today"
 datadir = "../data"
 configFileName = "./pubmed_anthroplot.json"
 verbose = False
