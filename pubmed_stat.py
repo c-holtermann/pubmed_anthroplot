@@ -7,6 +7,7 @@ import json
 import argparse
 import locale
 import backoff
+import pathlib
 import tqdm
 from bs4 import BeautifulSoup
 from pyparsing import *
