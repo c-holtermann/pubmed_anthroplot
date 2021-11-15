@@ -104,6 +104,14 @@ def read_infiles(files):
 
     return plot_datas
 
+def get_ylabel(n):
+    if config["figures"][str(n+1)] and config["figures"][str(n+1)]["label"]:
+        ylabel = config["figures"][str(n+1)]["label"]
+    else:
+        ylabel = ax_ylabels[n]
+
+    return ylabel
+
 def main():
     global config, args, files, plot_datas
 
@@ -156,7 +164,7 @@ def main():
       #if "Suchterm" in plot_data.keys:
       #  label += plot_data.keys["Suchterm"].decode("utf8")
 
-      label = ax_ylabels[n_plot]
+      label = get_ylabel(n_plot)
       pltmp, = ax.plot(plot_data.x, plot_data.y, styles[n_plot], label=label)
 
       label_list.append(label)
@@ -176,7 +184,7 @@ def main():
         ax.set_frame_on(True)
         ax.patch.set_visible(False)
 
-      ax.set_ylabel(ax_ylabels[n_plot])
+      ax.set_ylabel(label)
       # legend = ax.legend(loc="upper center")
       n_plot += 1
 
