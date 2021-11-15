@@ -1,5 +1,5 @@
 {
-	"filename": "{today}_fig_3_en",
+	"filename": "{today}_fig_2_en",
 	"title": "sum of publications on pubmed",
 	"xlabel": "year",
 	"year_start": 1940,
@@ -31,12 +31,8 @@
         		"label": "n publications anthroposophic medicine"
         	},
 		"2": {
-			"search_term": "meditati* or contempl*",
-			"label": "publications on meditation"
-		},
-		"3": {
 			"search_term": "",
-			"label": "total publications pubmed"
+			"label": "total publications on pubmed"
 		}
 	}
 }

@@ -1,7 +1,7 @@
 {
-	"filename": "{today}_fig_3_en",
-	"title": "sum of publications on pubmed",
-	"xlabel": "year",
+	"filename": "{today}_fig_3_de",
+	"title": "Summe der Publikationen auf Pubmed",
+	"xlabel": "Jahr",
 	"year_start": 1940,
 	"year_end": "today",
 	"figures": { 
@@ -28,15 +28,15 @@
 			    "(review OR review*) OR (ubersicht OR übersicht OR uebersicht) ",
 			    "OR (überblick OR ueberblick OR uberblick) OR metaanalys* OR ",
 			    "meta-analys* OR (meta AND analys*))"],
-        		"label": "n publications anthroposophic medicine"
+        		"label": "Publikationen Anthroposophische Medizin"
         	},
 		"2": {
 			"search_term": "meditati* or contempl*",
-			"label": "publications on meditation"
+			"label": "Publikationen Meditation"
 		},
 		"3": {
 			"search_term": "",
-			"label": "total publications pubmed"
+			"label": "Gesamtzahl Publikationen auf Pubmed"
 		}
 	}
 }
