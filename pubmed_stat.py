@@ -26,11 +26,14 @@ def readCommandLine():
     # Create the parser
     parser = argparse.ArgumentParser()
 
+    # Add argument datadir
+    parser.add_argument('--datadir', type=pathlib.Path, default=datadir)
+
     # Add argument startdate
-    parser.add_argument('--startdate', type=int, default=None)
+    parser.add_argument('--startdate', type=int, default=None, help="year to start counting, default is 1940")
 
     # Add argument enddate
-    parser.add_argument('--enddate', type=int, default=None)
+    parser.add_argument('--enddate', type=int, default=None, help="year to stop counting or string 'today', default is today")
 
     # Add argument configfile
     parser.add_argument('--configfile', type=argparse.FileType('r'), default=configFileName)
