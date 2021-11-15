@@ -85,9 +85,9 @@ def main():
     n_plot = 0
     min_x = 10000
     max_x = 0
-    ax_ylabels = ["Publikationen Ant. Med.", "Publikationen Pubmed gesamt", "Publikationen Meditation"]
+    
 
-    styles = [ "","g--","r." ]
+    styles = [ "", "g--", "r." ]
     legpl = []
     label_list = []
 
