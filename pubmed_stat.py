@@ -103,7 +103,13 @@ def main():
                         str(timenow.month) + "-" + \
                         str(timenow.day)
 
-        outfilename = timenow_date_str+"_statistics_" + str(nr)  + ".csv"
+        today = timenow_date_str
+
+        if configData["filename"]:
+            outfilename = configData["filename"].format(today=today) + "_"
+        else:
+            outfilename = timenow_date_str+"_statistics_"
+        outfilename += str(nr) + ".csv"
         outfilename_full = os.path.join(datadir, outfilename);
 
         with open(outfilename_full, 'w') as outfile:
