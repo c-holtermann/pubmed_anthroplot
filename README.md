@@ -14,7 +14,7 @@ Both scripts need a config file. Default ist ```pubmed_anthroplot.json```. This 
 
 ToDo
 ====
-The term for anthroposophic medicine includes a lot of publications that are not directly related to anthroposophic medicien. It needs to be refined.
+The term for anthroposophic medicine includes a lot of publications that are not directly related to anthroposophic medicine. It needs to be refined.
 
 3 plots
 =======
