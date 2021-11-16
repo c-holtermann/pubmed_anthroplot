@@ -12,6 +12,10 @@ After that run ```plot_statistics.py```. It will create an image file in the ima
 
 Both scripts need a config file. Default ist ```pubmed_anthroplot.json```. This defines the search term and label of plot and axes.
 
+ToDo
+====
+The term for anthroposophic medicine includes a lot of publications that are not directly related to anthroposophic medicien. It needs to be refined.
+
 3 plots
 =======
 ![example plot](2021-11-14_fig_3_en.png)
