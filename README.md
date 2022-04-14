@@ -28,7 +28,7 @@ The term for anthroposophic medicine includes a lot of publications that are not
 Usage
 =====
 * Mediawiki Commons: https://commons.wikimedia.org/wiki/File:2021-11-15_fig_2_en_pubmed_anthroplot.png
-* Imedwiki, article about anthroposophic medicine: 
+* Imedwiki, article about anthroposophic medicine: https://en.imedwiki.org/wiki/Anthroposophic_medicine
 
 Issues
 ======
