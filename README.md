@@ -25,6 +25,15 @@ The term for anthroposophic medicine includes a lot of publications that are not
 =======
 ![example plot](2021-11-15_fig_2_en.png)
 
+Usage
+=====
+* Mediawiki Commons: https://commons.wikimedia.org/wiki/File:2021-11-15_fig_2_en_pubmed_anthroplot.png
+* Imedwiki, article about anthroposophic medicine: 
+
+Issues
+======
+The search term is to broad to adequately reflect anthroposophic medical research as it overestimates the number of publications. The search term needs to be narrowed.
+
 Credits
 =======
 Original publication Kienle, Gunver; Glockmann, Anja; Grugek, Renate; Hamre, Harald Johan; Kiene, Helmut (2011), "Klinische Forschung zur Anthroposophischen Medizin – Update eines «Health Technology Assessment»-Berichts und Status Quo" [Clinical research on anthroposophic medicine - Update of a "Health Technology Assessment" report and Status Quo], Forschende Komplementärmedizin / Research in Complementary Medicine, 18, pp. 269–282, [doi:10.1159/000331812](https://www.doi.org/10.1159/000331812), ISSN 1661-4119
