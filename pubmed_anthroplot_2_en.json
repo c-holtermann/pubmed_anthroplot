@@ -27,7 +27,7 @@
 			    "random* OR investig* OR (cohort* OR kohort*) OR outcome* OR ",
 			    "(review OR review*) OR (ubersicht OR übersicht OR uebersicht) ",
 			    "OR (überblick OR ueberblick OR uberblick) OR metaanalys* OR ",
-			    "meta-analys* OR (meta AND analys*))"],
+			    "meta-analys* OR (meta AND analys*)))"],
         		"label": "n publications anthroposophic medicine"
         	},
 		"2": {
